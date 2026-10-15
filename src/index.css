@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap');
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap");
+@import "tailwindcss";
 
 @theme inline {
   --color-background: #0a0a0a;
@@ -18,8 +18,38 @@
   --color-ring: #cc1111;
   --radius: 2px;
 
-  --font-display: 'Barlow Condensed', sans-serif;
-  --font-body: 'Outfit', sans-serif;
+  /* Additional surfaces/dividers between `card` and `secondary` */
+  --color-surface: #0d0d0d;
+  --color-divider: #1f1f1f;
+  --color-line: #333333;
+
+  /* Text-dimness scale below `muted-foreground`, darkest to lightest */
+  --color-ghost: #444444;
+  --color-faint: #555555;
+  --color-dim: #666666;
+  --color-prose: #aaaaaa;
+
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-body: "Outfit", sans-serif;
+
+  --text-2xs: 0.625rem;
+
+  /* Letter-spacing scale beyond Tailwind's built-in `widest` (0.1em) */
+  --tracking-widest-sm: 0.12em;
+  --tracking-widest-md: 0.15em;
+  --tracking-widest-lg: 0.18em;
+  --tracking-widest-xl: 0.2em;
+  --tracking-widest-2xl: 0.25em;
+  --tracking-widest-3xl: 0.3em;
+
+  --leading-display: 0.9;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 * {
@@ -33,7 +63,7 @@ html {
 body {
   background-color: #0a0a0a;
   color: #f5f5f5;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -48,18 +78,32 @@ body {
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .animate-marquee {
@@ -75,7 +119,7 @@ body {
 }
 
 .font-display {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
 }
 
 .product-card:hover .product-img-front {
@@ -91,4 +135,42 @@ body {
 .product-img-front {
   opacity: 1;
   transition: opacity 0.4s ease;
+}
+
+/* One-off sizing that falls outside Tailwind's scale (viewport units, clamp()) */
+.hero-grid-overlay {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 48px,
+      color-mix(in srgb, var(--color-foreground) 3%, transparent) 48px,
+      color-mix(in srgb, var(--color-foreground) 3%, transparent) 49px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 48px,
+      color-mix(in srgb, var(--color-foreground) 3%, transparent) 48px,
+      color-mix(in srgb, var(--color-foreground) 3%, transparent) 49px
+    );
+}
+
+.hero-glow {
+  width: 60vw;
+  height: 60vw;
+  filter: blur(120px);
+}
+
+.text-hero {
+  font-size: clamp(64px, 13vw, 200px);
+  line-height: 0.88;
+}
+
+.text-manifesto {
+  font-size: clamp(36px, 7vw, 96px);
+}
+
+.max-h-modal {
+  max-height: 92vh;
 }
